@@ -1,4 +1,31 @@
-from typing import Tuple, Dict, List
+from typing import List, Tuple, Dict
+
+def find_min_value(numbers: List[int]) -> int:
+    """
+    Finds the minimum value in a list of numbers
+
+    Args:
+        numbers (List[int]): A list of numbers (integers).
+
+    Returns:
+        int: The smallest number in the list.
+    
+    Raises:
+        ValueError: If the list is empty
+        TypeError: If the input is not a list of numbers.
+    """
+    if not isinstance(numbers, list):
+        raise TypeError("Input must be a list.")
+    if not numbers:
+        raise ValueError("Can't find the minimum of an empty list.")
+    if not all(isinstance(x, int) for x in numbers):
+        raise TypeError("List must contain only integer")
+    
+    min_value = numbers[0]
+    for number in numbers[1:]:
+        if number < min_value:
+            min_value = number
+    return min_value
 
 def prepare_str_to_list_of_lwh(string_message: str) -> List[Tuple[str]]:
     string_message_list = string_message.strip().split('\n')
@@ -29,7 +56,9 @@ if __name__ == '__main__':
     string_message = """
     1x1x10
     """
-    a = prepare_str_to_list_of_lwh(string_message)
-    b = mapping_str_to_list_of_dict_of_lwh(a)
-    c = calculate_surface_area(b)
-    print(c)
+    # a = prepare_str_to_list_of_lwh(string_message)
+    # b = mapping_str_to_list_of_dict_of_lwh(a)
+    # c = calculate_surface_area(b)
+    # print(c)
+    number = [8, 9, 32, 19, -1, 0, -9, 1,]
+    print(find_min_value(number))
