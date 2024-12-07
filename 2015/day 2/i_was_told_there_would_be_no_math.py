@@ -27,9 +27,19 @@ def find_min_value(numbers: List[int]) -> int:
             min_value = number
     return min_value
 
-def prepare_str_to_list_of_lwh(string_message: str) -> List[Tuple[str]]:
+def prepare_str_to_list_of_lwh(string_message: str) -> List[str]:
+    """
+    Converts a multi-line string into a list of stripped lines.
+
+    Args:
+        string_message (str): A multi-line string input.
+
+    Returns:
+        List[str]: A list of stripped strings, one per line.
+
+    """
     string_message_list = string_message.strip().split('\n')
-    lwh_list = [_.strip() for _ in string_message_list]
+    lwh_list = [line.strip() for line in string_message_list]
     return lwh_list
 
 def mapping_str_to_list_of_dict_of_lwh(lwh_list: list) -> List[Dict[str, str]]:
@@ -55,10 +65,13 @@ def calculate_little_extra_paper(lwh_dict: dict) -> int:
 if __name__ == '__main__':
     string_message = """
     1x1x10
+    1x9x10
+    1x1x15
     """
-    # a = prepare_str_to_list_of_lwh(string_message)
+    a = prepare_str_to_list_of_lwh(string_message)
+    print(a)
     # b = mapping_str_to_list_of_dict_of_lwh(a)
     # c = calculate_surface_area(b)
     # print(c)
-    number = [8, 9, 32, 19, -1, 0, -9, 1,]
-    print(find_min_value(number))
+    # number = [8, 9, 32, 19, -1, 0, -9, 1,]
+    # print(find_min_value(number))
