@@ -42,15 +42,21 @@ def prepare_str_to_list_of_lwh(string_message: str) -> List[str]:
     lwh_list = [line.strip() for line in string_message_list]
     return lwh_list
 
-def mapping_str_to_list_of_dict_of_lwh(lwh_list: list) -> List[Dict[str, str]]:
-    dict_list: list = []
+def mapping_str_to_list_of_dict_of_lwh(lwh_list: list) -> List[Dict[str, int]]:
+    """
+    Converts a list of string representing dimensions (LxWxH)
+    into a list of dictionaries with integer values for key 'l', 'w' and 'h'.
+
+    Args:
+        lwh_list (list): A list of string with dimensions in the format 'LxWxH'.
+
+    Returns:
+        List[Dict[str, int]]: A list of dictionaries with parsed dimensions.
+    """
+    dict_list: List[Dict[str, int]] = []
     for lwh in lwh_list:
-        lwh_tmp: list = lwh.split('x')
-        dict_list.append({
-            'l': int(lwh_tmp[0]),
-            'w': int(lwh_tmp[1]),
-            'h': int(lwh_tmp[2])
-        })
+        l, w, h = map(int, lwh.split('x'))
+        dict_list.append({'l': l, 'w': w, 'h': h})
     return dict_list        
 
 def calculate_surface_area(lwh_dict: dict) -> int:
